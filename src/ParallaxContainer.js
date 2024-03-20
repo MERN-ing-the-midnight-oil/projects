@@ -4,40 +4,40 @@ import Portfolio from "./Portfolio";
 
 const ParallaxContainer = () => {
 	const [backgroundImage, setBackgroundImage] = useState("bg1.png");
+	const [lastImageSet, setLastImageSet] = useState(false); // New state to track if the last image is set
 
 	useEffect(() => {
 		const handleScroll = () => {
-			console.log("Scroll event detected");
-			// Get the total height of the document
+			if (lastImageSet) return; // If the last image is set, do not change it
+
+			// The rest of your scroll handling logic
 			const documentHeight = document.documentElement.scrollHeight;
-			// Get the height from the top of the document to the top of the viewport
 			const scrollTop =
 				window.pageYOffset || document.documentElement.scrollTop;
-			// Get the total height of the viewport
 			const windowHeight = window.innerHeight;
-			// Calculate the total scrollable length
 			const scrollableHeight = documentHeight - windowHeight;
-			// Calculate the current scroll progress as a percentage
 			const scrolledPercentage = scrollTop / scrollableHeight;
-			console.log("The scrolled percentage is: " + scrolledPercentage); // Log the scrolled percentage
 
+			let newImage = "bg1.png";
 			if (scrolledPercentage < 0.02) {
-				setBackgroundImage("bg1.png");
+				newImage = "bg1.png";
 			} else if (scrolledPercentage < 0.05) {
-				setBackgroundImage("bg2.png");
+				newImage = "bg2.png";
 			} else if (scrolledPercentage < 0.08) {
-				setBackgroundImage("bg3.png");
+				newImage = "bg3.png";
 			} else if (scrolledPercentage < 0.11) {
-				setBackgroundImage("bg4.png");
+				newImage = "bg4.png";
 			} else {
-				setBackgroundImage("bg5.png"); // Ensures the last image is set towards the end
+				newImage = "bg5.png";
+				setLastImageSet(true); // Set the flag when the last image is set
 			}
+
+			setBackgroundImage(newImage);
 		};
 
 		window.addEventListener("scroll", handleScroll);
-
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+	}, [lastImageSet]); // Depend on lastImageSet so the effect is correctly cleaned up and reapplied if needed
 
 	return (
 		<div>
@@ -54,7 +54,6 @@ const ParallaxContainer = () => {
 			<div
 				style={{
 					padding: "2rem",
-					backgroundColor: "#fff",
 					margin: "0 auto",
 					maxWidth: "90%",
 				}}>

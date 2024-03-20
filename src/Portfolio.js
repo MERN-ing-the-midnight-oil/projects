@@ -5,7 +5,6 @@ import shelfElfImage from "./images/ShelfElf.png"; // Adjust the path as necessa
 const projects = [
 	// Full MERN Stack projects
 	{
-		id: 2,
 		title: "Shelf Elf",
 		subtitle:
 			"A full-stack MERN platform facilitating peer-to-peer book lending.",
@@ -18,7 +17,6 @@ const projects = [
 		category: "Full MERN Stack projects",
 	},
 	{
-		id: 11,
 		title: "NOAA Fisheries BSAI/GOA Bycatch Rates Widget",
 		subtitle:
 			"Full Stack MERN Web Application with RESTful and GraphQL Data Handling",
@@ -32,7 +30,17 @@ const projects = [
 	},
 	// Front-end demos
 	{
-		id: 1,
+		title: "Genre Genie",
+		subtitle: "A movie suggestion platform based on user-selected genres.",
+		description:
+			"Demonstrates the integration of third-party API calls and the effective use of local storage for user preferences and data retrieval.",
+		repo: "https://github.com/MERN-ing-the-midnight-oil/Genre-Genie",
+		deployedURL: "https://mern-ing-the-midnight-oil.github.io/Genre-Genie/",
+		image:
+			"https://cdn.midjourney.com/a0dcda47-f18b-4887-9d50-578a4f6a1aed/grid_0.png",
+		category: "Front-end demos",
+	},
+	{
 		title: "Bananarama Grams",
 		subtitle: "A front-end crossword puzzle game element simulation.",
 		description:
@@ -44,7 +52,6 @@ const projects = [
 		category: "Front-end demos",
 	},
 	{
-		id: 6,
 		title: "Fade and Flow Animations using React-Spring",
 		subtitle:
 			"An automated image animation gallery with generative AI tutorial.",
@@ -57,7 +64,6 @@ const projects = [
 		category: "Front-end demos",
 	},
 	{
-		id: 7,
 		title: "Here Kitty Kitty Score Calculator",
 		subtitle:
 			"A score calculator for the 'Here Kitty Kitty' board game by Fireside Games.",
@@ -72,20 +78,8 @@ const projects = [
 	},
 
 	// Collaborations
+
 	{
-		id: 5,
-		title: "Genre Genie",
-		subtitle: "A movie suggestion platform based on user-selected genres.",
-		description:
-			"Demonstrates the integration of third-party API calls and the effective use of local storage for user preferences and data retrieval.",
-		repo: "https://github.com/MERN-ing-the-midnight-oil/Genre-Genie",
-		deployedURL: "https://mern-ing-the-midnight-oil.github.io/Genre-Genie/",
-		image:
-			"https://cdn.midjourney.com/a0dcda47-f18b-4887-9d50-578a4f6a1aed/grid_0.png",
-		category: "Collaborations",
-	},
-	{
-		id: 8,
 		title: "Mail-Me-Seeds",
 		subtitle: "A platform for gardeners and farmers to share vegetable seeds.",
 		description:
@@ -97,7 +91,6 @@ const projects = [
 		category: "Collaborations",
 	},
 	{
-		id: 9,
 		title: "Ro-Sham-Bots",
 		subtitle: "A game where users compete against AI in rock-paper-scissors.",
 		description:
@@ -112,7 +105,9 @@ const projects = [
 
 const Portfolio = () => {
 	return (
-		<div style={{ paddingTop: "40px", alignContent: "center" }}>
+		<div
+			className="portfolio-container"
+			style={{ paddingTop: "40px", alignContent: "center" }}>
 			<h1 style={{ textAlign: "center" }}>My Projects</h1>
 			{/* Full MERN Stack projects */}
 			<h2 style={{ textAlign: "center" }}>Full MERN Stack Projects</h2>

@@ -1,8 +1,48 @@
-/* CustomCard.css */
+/* CSS Variables */
+:root {
+  --bluishgrey: #d6dee5; /* Bluish-grey variable for consistent theme color */
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html, #root, .App {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bluishgrey); /* Apply the grey background globally */
+}
+
+/* Header Styles */
+.header-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.persistent-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--bluishgrey);
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: none; /* Removing box-shadow for seamless integration */
+}
+
+.header-links a {
+  margin: 0 15px; /* Adjusts spacing around links */
+}
 
 /* Parallax Background */
 .parallax-background {
-  background-image: url('./images/lanterns.png'); /* Adjust if the path differs */
+  background-image: url('./images/lanterns.png');
   height: 650px;
   background-attachment: fixed;
   background-position: center;
@@ -10,53 +50,84 @@
   background-size: cover;
 }
 
+/* Global Portfolio Background */
+.portfolio-container {
+  padding-top: 40px;
+  align-content: center;
+}
+
 /* Custom Card Styles */
 .custom-card {
-  flex: 0 1 375px; /* Flex-grow, flex-shrink, and flex-basis */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  margin-bottom: 20px; /* Spacing between cards when they wrap */
+  flex: 0 1 375px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Consider adjusting if shadow is undesired */
+  margin-bottom: 20px;
   display: flex;
-  flex-direction: column; /* Stack card content vertically */
+  flex-direction: column;
   overflow: hidden;
+  background-color: var(--bluishgrey);
 }
 
 .custom-card-img {
-  width: 100%; /* Responsive image that fits the card's width */
-  max-height: 200px; /* Limiting image height */
-  object-fit: cover; /* Ensures the image covers the area nicely */
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
 }
 
 .custom-card-body {
-  padding: 15px; /* Padding inside the card for spacing */
+  padding: 15px;
 }
 
 .custom-card-title, .custom-card-subtitle, .custom-card-text {
-  margin: 10px 0; /* Spacing between text elements */
+  margin: 10px 0;
 }
 
 .custom-card-links-container {
-  text-align: center; /* Center the links */
-  margin-top: 10px; /* Extra spacing above the links */
+  text-align: center;
+  margin-top: 10px;
 }
 
 .custom-card-link {
-  display: inline-block; /* Display links side by side */
-  margin: 0 10px; /* Space out the links */
+  display: inline-block;
+  margin: 0 10px;
 }
 
+/* Card Container */
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center cards on the page */
-  gap: 20px; /* Space between cards */
-  padding: 20px; /* Padding around the entire container */
-  background-color: rgba(255, 255, 255, 0.0); 
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
 }
 
+/* About Me Section */
+.about-me-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--bluishgrey);
+  padding: 20px;
+  border-radius: 0; /* Adjusted to 0 for seamless integration */
+  box-shadow: none; /* Removing box-shadow for seamless integration */
+  gap: 20px;
+}
+
+.about-me-profile-pic {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: none; /* Consider removing or adjusting the border for integration */
+}
+
+.about-me-text {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+  flex: 1;
+}
 
 /* Responsive Adjustments */
 @media (max-height: 700px) {
   .parallax-custom-height {
-    height: 50vh; /* Example: 50% of the viewport height */
+    height: 50vh;
   }
 }
