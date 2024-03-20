@@ -1,0 +1,62 @@
+/* CustomCard.css */
+
+/* Parallax Background */
+.parallax-background {
+  background-image: url('./images/lanterns.png'); /* Adjust if the path differs */
+  height: 650px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Custom Card Styles */
+.custom-card {
+  flex: 0 1 375px; /* Flex-grow, flex-shrink, and flex-basis */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px; /* Spacing between cards when they wrap */
+  display: flex;
+  flex-direction: column; /* Stack card content vertically */
+  overflow: hidden;
+}
+
+.custom-card-img {
+  width: 100%; /* Responsive image that fits the card's width */
+  max-height: 200px; /* Limiting image height */
+  object-fit: cover; /* Ensures the image covers the area nicely */
+}
+
+.custom-card-body {
+  padding: 15px; /* Padding inside the card for spacing */
+}
+
+.custom-card-title, .custom-card-subtitle, .custom-card-text {
+  margin: 10px 0; /* Spacing between text elements */
+}
+
+.custom-card-links-container {
+  text-align: center; /* Center the links */
+  margin-top: 10px; /* Extra spacing above the links */
+}
+
+.custom-card-link {
+  display: inline-block; /* Display links side by side */
+  margin: 0 10px; /* Space out the links */
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center cards on the page */
+  gap: 20px; /* Space between cards */
+  padding: 20px; /* Padding around the entire container */
+  background-color: rgba(255, 255, 255, 0.0); 
+}
+
+
+/* Responsive Adjustments */
+@media (max-height: 700px) {
+  .parallax-custom-height {
+    height: 50vh; /* Example: 50% of the viewport height */
+  }
+}
