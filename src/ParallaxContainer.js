@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useTransition, animated } from "react-spring";
 import Header from "./Header";
 import Portfolio from "./Portfolio";
 
 const ParallaxContainer = () => {
-	const [backgroundImage, setBackgroundImage] = useState("bg1.png");
-	const [lastImageSet, setLastImageSet] = useState(false); // New state to track if the last image is set
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const [lastImageSet, setLastImageSet] = useState(false);
+	const images = ["bg1.png", "bg2.png", "bg3.png", "bg4.png", "bg5.png"];
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (lastImageSet) return; // If the last image is set, do not change it
+			if (lastImageSet) return;
 
-			// The rest of your scroll handling logic
 			const documentHeight = document.documentElement.scrollHeight;
 			const scrollTop =
 				window.pageYOffset || document.documentElement.scrollTop;
@@ -18,39 +19,54 @@ const ParallaxContainer = () => {
 			const scrollableHeight = documentHeight - windowHeight;
 			const scrolledPercentage = scrollTop / scrollableHeight;
 
-			let newImage = "bg1.png";
-			if (scrolledPercentage < 0.02) {
-				newImage = "bg1.png";
-			} else if (scrolledPercentage < 0.05) {
-				newImage = "bg2.png";
-			} else if (scrolledPercentage < 0.08) {
-				newImage = "bg3.png";
-			} else if (scrolledPercentage < 0.11) {
-				newImage = "bg4.png";
-			} else {
-				newImage = "bg5.png";
-				setLastImageSet(true); // Set the flag when the last image is set
+			let newIndex = 0;
+			if (scrolledPercentage < 0.02) newIndex = 0;
+			else if (scrolledPercentage < 0.05) newIndex = 1;
+			else if (scrolledPercentage < 0.08) newIndex = 2;
+			else if (scrolledPercentage < 0.11) newIndex = 3;
+			else {
+				newIndex = images.length - 1; // Use the last index
+				setLastImageSet(true);
 			}
 
-			setBackgroundImage(newImage);
+			setCurrentIndex(newIndex);
 		};
 
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, [lastImageSet]); // Depend on lastImageSet so the effect is correctly cleaned up and reapplied if needed
+	}, [lastImageSet, images.length]);
+
+	const transitions = useTransition(currentIndex, {
+		from: { opacity: 0 },
+		enter: { opacity: 1 },
+		leave: { opacity: 0 },
+		config: { duration: 500 }, // Adjust duration for smoother or faster transitions
+	});
 
 	return (
 		<div>
 			<Header />
 			<div
 				style={{
-					backgroundImage: `url(${process.env.PUBLIC_URL}/${backgroundImage})`,
 					height: "650px",
 					backgroundAttachment: "fixed",
 					backgroundPosition: "center",
 					backgroundRepeat: "no-repeat",
 					backgroundSize: "cover",
-				}}></div>
+					position: "relative",
+				}}>
+				{transitions((style, item) => (
+					<animated.div
+						style={{
+							...style,
+							position: "absolute",
+							width: "100%",
+							height: "100%",
+							backgroundImage: `url(${process.env.PUBLIC_URL}/${images[item]})`,
+						}}
+					/>
+				))}
+			</div>
 			<div
 				style={{
 					padding: "2rem",
