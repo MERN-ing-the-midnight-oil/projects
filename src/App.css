@@ -13,7 +13,7 @@
 body, html, #root, .App {
   width: 100%;
   height: 100%;
-  background-color: var(--bluishgrey); /* Apply the grey background globally */
+  background-color: var(--bluishgrey); /* Applying a grey background globally */
 }
 
 /* Header Styles */
@@ -33,11 +33,11 @@ body, html, #root, .App {
   justify-content: space-around;
   align-items: center;
   z-index: 1000;
-  box-shadow: none; /* Removing box-shadow for seamless integration */
+  box-shadow: none; 
 }
 
 .header-links a {
-  margin: 0 15px; /* Adjusts spacing around links */
+  margin: 0 15px; 
 }
 
 /* Parallax Background */
@@ -59,7 +59,7 @@ body, html, #root, .App {
 /* Custom Card Styles */
 .custom-card {
   flex: 0 1 375px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Consider adjusting if shadow is undesired */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -106,8 +106,8 @@ body, html, #root, .App {
   align-items: center;
   background-color: var(--bluishgrey);
   padding: 20px;
-  border-radius: 0; /* Adjusted to 0 for seamless integration */
-  box-shadow: none; /* Removing box-shadow for seamless integration */
+  border-radius: 0; 
+  box-shadow: none; 
   gap: 20px;
 }
 
@@ -115,7 +115,7 @@ body, html, #root, .App {
   width: 150px;
   height: 150px;
   object-fit: cover;
-  border: none; /* Consider removing or adjusting the border for integration */
+  border: none; 
 }
 
 .about-me-text {
@@ -125,7 +125,6 @@ body, html, #root, .App {
   flex: 1;
 }
 
-/* Responsive Adjustments */
 @media (max-height: 700px) {
   .parallax-custom-height {
     height: 50vh;

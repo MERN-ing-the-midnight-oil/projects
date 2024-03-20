@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AboutMe from "./AboutMe";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
-import { MdMail } from "react-icons/md"; // Importing the Mail icon
+import { MdMail } from "react-icons/md";
 
 export default function Header() {
 	const [isScrolled, setIsScrolled] = useState(false);

@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css"; // Adjust the path if necessary
+import "./App.css";
 
 const CustomCard = ({
 	title,
