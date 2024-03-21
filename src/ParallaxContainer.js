@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useTransition, animated } from "react-spring";
 import Header from "./Header";
 import Portfolio from "./Portfolio";
 
 const ParallaxContainer = () => {
-	const [currentIndex, setCurrentIndex] = useState(0);
+	const backgroundImageUrls = [
+		"bg1.png",
+		"bg2.png",
+		"bg3.png",
+		"bg4.png",
+		"bg5.png",
+	]; // Array of image URLs
+	const [backgroundImage, setBackgroundImage] = useState(
+		backgroundImageUrls[0]
+	);
 	const [lastImageSet, setLastImageSet] = useState(false);
-	const images = ["bg1.png", "bg2.png", "bg3.png", "bg4.png", "bg5.png"];
 
 	useEffect(() => {
+		// Pre-load images
+		backgroundImageUrls.forEach((image) => {
+			const img = new Image();
+			img.src = `${process.env.PUBLIC_URL}/${image}`;
+		});
+
 		const handleScroll = () => {
 			if (lastImageSet) return;
 
@@ -19,54 +32,39 @@ const ParallaxContainer = () => {
 			const scrollableHeight = documentHeight - windowHeight;
 			const scrolledPercentage = scrollTop / scrollableHeight;
 
-			let newIndex = 0;
-			if (scrolledPercentage < 0.02) newIndex = 0;
-			else if (scrolledPercentage < 0.05) newIndex = 1;
-			else if (scrolledPercentage < 0.08) newIndex = 2;
-			else if (scrolledPercentage < 0.11) newIndex = 3;
-			else {
-				newIndex = images.length - 1; // Use the last index
+			let newImageIndex = 0; // Default to first image
+			if (scrolledPercentage < 0.02) {
+				newImageIndex = 0;
+			} else if (scrolledPercentage < 0.05) {
+				newImageIndex = 1;
+			} else if (scrolledPercentage < 0.08) {
+				newImageIndex = 2;
+			} else if (scrolledPercentage < 0.11) {
+				newImageIndex = 3;
+			} else {
+				newImageIndex = 4;
 				setLastImageSet(true);
 			}
 
-			setCurrentIndex(newIndex);
+			setBackgroundImage(backgroundImageUrls[newImageIndex]);
 		};
 
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
-	}, [lastImageSet, images.length]);
-
-	const transitions = useTransition(currentIndex, {
-		from: { opacity: 0 },
-		enter: { opacity: 1 },
-		leave: { opacity: 0 },
-		config: { duration: 500 }, // Adjust duration for smoother or faster transitions
-	});
+	}, [lastImageSet, backgroundImageUrls]); // Add backgroundImageUrls as a dependency
 
 	return (
 		<div>
 			<Header />
 			<div
 				style={{
+					backgroundImage: `url(${process.env.PUBLIC_URL}/${backgroundImage})`,
 					height: "650px",
 					backgroundAttachment: "fixed",
 					backgroundPosition: "center",
 					backgroundRepeat: "no-repeat",
 					backgroundSize: "cover",
-					position: "relative",
-				}}>
-				{transitions((style, item) => (
-					<animated.div
-						style={{
-							...style,
-							position: "absolute",
-							width: "100%",
-							height: "100%",
-							backgroundImage: `url(${process.env.PUBLIC_URL}/${images[item]})`,
-						}}
-					/>
-				))}
-			</div>
+				}}></div>
 			<div
 				style={{
 					padding: "2rem",

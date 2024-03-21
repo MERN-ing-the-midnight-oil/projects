@@ -25,7 +25,9 @@ export default function Header() {
 	return (
 		<div className="header-container">
 			<div className="persistent-header">
-				<span>MERNing the midnight oil</span>
+				<span style={{ fontWeight: "bold", fontSize: "24px" }}>
+					MERN-ing THE MIDNIGHT OIL
+				</span>
 				<a href={mailtoLink}>
 					<MdMail style={{ marginRight: "5px" }} />
 					merning.the.midnight.oil@gmail.com
