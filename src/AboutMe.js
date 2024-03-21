@@ -9,9 +9,10 @@ export default function AboutMe() {
 				className="about-me-profile-pic"
 			/>
 			<p className="about-me-text">
-				With a background in the natural sciences, I'm a creative thinker who
-				enjoys problem solving. I'm able to switch quickly between big picture
-				thinking and being detail oriented.
+				My background is in the natural sciences and math and science education.
+				I am creative and a tenacious problem solver. I'm also readily able to
+				frequently switch between being detail oriented and being a systems
+				thinker."
 			</p>
 		</div>
 	);

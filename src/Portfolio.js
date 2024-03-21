@@ -1,6 +1,7 @@
 import React from "react";
 import CustomCard from "./CustomCard";
 import shelfElfImage from "./images/ShelfElf.png"; // Adjust the path as necessary for your project structure
+import fullStackImage from "./images/fullstack.jpeg";
 
 const projects = [
 	// Full MERN Stack projects
@@ -104,6 +105,10 @@ const projects = [
 ];
 
 const Portfolio = () => {
+	const openImageInNewTab = () => {
+		const newTab = window.open();
+		newTab.document.body.innerHTML = `<img src="${fullStackImage}" style="width: 100%; height: auto;">`;
+	};
 	return (
 		<div
 			className="portfolio-container"
@@ -144,6 +149,18 @@ const Portfolio = () => {
 							{...project}
 						/>
 					))}
+			</div>
+			{/* Link to the fullstack.jpg image with a preview */}
+			<div style={{ textAlign: "center", marginTop: "20px" }}>
+				{/* Use any element to trigger the image opening, here we use an img tag itself */}
+				<h1 style={{ textAlign: "center" }}>My Certification</h1>
+				<img
+					src={fullStackImage}
+					alt="Full Stack Certified"
+					style={{ width: "40%", height: "auto", cursor: "pointer" }}
+					onClick={openImageInNewTab}
+					title="Click to view in full size"
+				/>
 			</div>
 		</div>
 	);
