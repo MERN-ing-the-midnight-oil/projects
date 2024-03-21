@@ -1,69 +1,62 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "./Header";
 import Portfolio from "./Portfolio";
 
 const ParallaxContainer = () => {
-	const backgroundImageUrls = [
-		"bg1.png",
-		"bg2.png",
-		"bg3.png",
-		"bg4.png",
-		"bg5.png",
-	]; // Array of image URLs
-	const [backgroundImage, setBackgroundImage] = useState(
-		backgroundImageUrls[0]
+	const backgroundImageUrls = Array.from(
+		{ length: 9 },
+		(_, i) => `${process.env.PUBLIC_URL}/CosmicBG/e${i + 1}.webp`
 	);
-	const [lastImageSet, setLastImageSet] = useState(false);
+	const [currentImageIndex, setCurrentImageIndex] = useState(0);
+	const animationIntervalRef = useRef(null);
 
 	useEffect(() => {
-		// Pre-load images
-		backgroundImageUrls.forEach((image) => {
+		// Preload images
+		backgroundImageUrls.forEach((imageUrl) => {
 			const img = new Image();
-			img.src = `${process.env.PUBLIC_URL}/${image}`;
+			img.src = imageUrl;
 		});
+	}, [backgroundImageUrls]);
 
-		const handleScroll = () => {
-			if (lastImageSet) return;
+	const startAnimation = () => {
+		// Ensures we're not starting another interval if one is already running
+		if (!animationIntervalRef.current) {
+			animationIntervalRef.current = setInterval(() => {
+				setCurrentImageIndex(
+					(prevIndex) => (prevIndex + 1) % backgroundImageUrls.length
+				);
+			}, 150); // Change image every 150ms
+		}
+	};
 
-			const documentHeight = document.documentElement.scrollHeight;
-			const scrollTop =
-				window.pageYOffset || document.documentElement.scrollTop;
-			const windowHeight = window.innerHeight;
-			const scrollableHeight = documentHeight - windowHeight;
-			const scrolledPercentage = scrollTop / scrollableHeight;
+	const stopAnimation = () => {
+		if (animationIntervalRef.current) {
+			clearInterval(animationIntervalRef.current);
+			animationIntervalRef.current = null;
+		}
+	};
 
-			let newImageIndex = 0; // Default to first image
-			if (scrolledPercentage < 0.02) {
-				newImageIndex = 0;
-			} else if (scrolledPercentage < 0.05) {
-				newImageIndex = 1;
-			} else if (scrolledPercentage < 0.08) {
-				newImageIndex = 2;
-			} else if (scrolledPercentage < 0.11) {
-				newImageIndex = 3;
-			} else {
-				newImageIndex = 4;
-				setLastImageSet(true);
-			}
+	const handleMouseOver = () => {
+		startAnimation();
+	};
 
-			setBackgroundImage(backgroundImageUrls[newImageIndex]);
-		};
-
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [lastImageSet, backgroundImageUrls]); // Add backgroundImageUrls as a dependency
+	const handleMouseOut = () => {
+		stopAnimation();
+	};
 
 	return (
 		<div>
 			<Header />
 			<div
+				onMouseOver={handleMouseOver}
+				onMouseOut={handleMouseOut}
 				style={{
-					backgroundImage: `url(${process.env.PUBLIC_URL}/${backgroundImage})`,
+					position: "relative",
 					height: "650px",
-					backgroundAttachment: "fixed",
-					backgroundPosition: "center",
-					backgroundRepeat: "no-repeat",
+					backgroundImage: `url(${backgroundImageUrls[currentImageIndex]})`,
 					backgroundSize: "cover",
+					backgroundPosition: "center",
+					backgroundAttachment: "fixed",
 				}}></div>
 			<div
 				style={{

@@ -10,9 +10,8 @@ export default function AboutMe() {
 			/>
 			<p className="about-me-text">
 				My background is in the natural sciences and math and science education.
-				I am creative and a tenacious problem solver. I'm also readily able to
-				frequently switch between being detail oriented and being a systems
-				thinker.
+				I am a creative and tenacious problem solver. I'm also able to switch
+				frequently between being detail oriented and being a systems thinker.
 			</p>
 		</div>
 	);

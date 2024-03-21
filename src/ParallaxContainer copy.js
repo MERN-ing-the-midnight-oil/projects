@@ -3,53 +3,39 @@ import Header from "./Header";
 import Portfolio from "./Portfolio";
 
 const ParallaxContainer = () => {
-	const [backgroundImage, setBackgroundImage] = useState("bg1.png");
-	const [lastImageSet, setLastImageSet] = useState(false); // New state to track if the last image is set
+	const backgroundImageUrls = Array.from(
+		{ length: 9 },
+		(_, i) => `${process.env.PUBLIC_URL}/CosmicBG/e${i + 1}.webp`
+	);
+	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 	useEffect(() => {
-		const handleScroll = () => {
-			if (lastImageSet) return; // If the last image is set, do not change it
+		// Initial preload of images
+		backgroundImageUrls.forEach((imageUrl) => {
+			const img = new Image();
+			img.src = imageUrl;
+		});
 
-			// The rest of your scroll handling logic
-			const documentHeight = document.documentElement.scrollHeight;
-			const scrollTop =
-				window.pageYOffset || document.documentElement.scrollTop;
-			const windowHeight = window.innerHeight;
-			const scrollableHeight = documentHeight - windowHeight;
-			const scrolledPercentage = scrollTop / scrollableHeight;
+		const interval = setInterval(() => {
+			setCurrentImageIndex(
+				(prevIndex) => (prevIndex + 1) % backgroundImageUrls.length
+			);
+		}, 400); // duration
 
-			let newImage = "bg1.png";
-			if (scrolledPercentage < 0.02) {
-				newImage = "bg1.png";
-			} else if (scrolledPercentage < 0.05) {
-				newImage = "bg2.png";
-			} else if (scrolledPercentage < 0.08) {
-				newImage = "bg3.png";
-			} else if (scrolledPercentage < 0.11) {
-				newImage = "bg4.png";
-			} else {
-				newImage = "bg5.png";
-				setLastImageSet(true); // Set the flag when the last image is set
-			}
-
-			setBackgroundImage(newImage);
-		};
-
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [lastImageSet]); // Depend on lastImageSet so the effect is correctly cleaned up and reapplied if needed
+		return () => clearInterval(interval); // Cleanup on component unmount
+	}, [backgroundImageUrls]);
 
 	return (
 		<div>
 			<Header />
 			<div
 				style={{
-					backgroundImage: `url(${process.env.PUBLIC_URL}/${backgroundImage})`,
+					position: "relative",
 					height: "650px",
-					backgroundAttachment: "fixed",
-					backgroundPosition: "center",
-					backgroundRepeat: "no-repeat",
+					backgroundImage: `url(${backgroundImageUrls[currentImageIndex]})`,
 					backgroundSize: "cover",
+					backgroundPosition: "center",
+					backgroundAttachment: "fixed", // Keeping fixed background attachment for parallax effect
 				}}></div>
 			<div
 				style={{
