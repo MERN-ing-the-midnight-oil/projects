@@ -12,7 +12,7 @@ export default function AboutMe() {
 				My background is in the natural sciences and math and science education.
 				I am creative and a tenacious problem solver. I'm also readily able to
 				frequently switch between being detail oriented and being a systems
-				thinker."
+				thinker.
 			</p>
 		</div>
 	);

@@ -153,7 +153,9 @@ const Portfolio = () => {
 			{/* Link to the fullstack.jpg image with a preview */}
 			<div style={{ textAlign: "center", marginTop: "20px" }}>
 				{/* Use any element to trigger the image opening, here we use an img tag itself */}
-				<h1 style={{ textAlign: "center" }}>My Certification</h1>
+				<h1 style={{ textAlign: "center" }}>
+					Full stack web development certification
+				</h1>
 				<img
 					src={fullStackImage}
 					alt="Full Stack Certified"
