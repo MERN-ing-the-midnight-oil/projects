@@ -4,7 +4,7 @@ import Portfolio from "./Portfolio";
 
 const ParallaxContainer = () => {
 	const backgroundImageUrls = Array.from(
-		{ length: 9 },
+		{ length: 8 },
 		(_, i) => `${process.env.PUBLIC_URL}/CosmicBG/e${i + 1}.webp`
 	);
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
