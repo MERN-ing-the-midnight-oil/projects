@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/projects/static/css/main.7264a008.css",
-    "main.js": "/projects/static/js/main.56cae6a6.js",
+    "main.js": "/projects/static/js/main.ef340c6c.js",
     "static/media/ShelfElf.png": "/projects/static/media/ShelfElf.d002852280adbedc143a.png",
     "static/media/lanterns.png": "/projects/static/media/lanterns.59281d0cc053209b51a1.png",
     "static/media/fullstack.jpeg": "/projects/static/media/fullstack.503aa7cb8311782f132d.jpeg",
     "index.html": "/projects/index.html",
     "main.7264a008.css.map": "/projects/static/css/main.7264a008.css.map",
-    "main.56cae6a6.js.map": "/projects/static/js/main.56cae6a6.js.map"
+    "main.ef340c6c.js.map": "/projects/static/js/main.ef340c6c.js.map"
   },
   "entrypoints": [
     "static/css/main.7264a008.css",
-    "static/js/main.56cae6a6.js"
+    "static/js/main.ef340c6c.js"
   ]
 }
