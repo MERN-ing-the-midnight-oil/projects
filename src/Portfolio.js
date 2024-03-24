@@ -11,7 +11,7 @@ const projects = [
 			"A full-stack MERN platform facilitating peer-to-peer book lending.",
 		description:
 			"A full stack MERN application showcasing a front-end built with React Hooks and Context API. The back-end uses JWT for authentication, structured with Typescript.",
-		repo: "https://github.com/MERN-ing-the-midnight-oil/bellingham-buy-nothing-books",
+		repo: "https://github.com/MERN-ing-the-midnight-oil/shelf-elf",
 		deployedURL:
 			"https://shelf-elf-4b02ddd52e38.herokuapp.com/manage-communities",
 		image: shelfElfImage,
