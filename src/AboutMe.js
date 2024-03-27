@@ -15,7 +15,7 @@ export default function AboutMe() {
 				specialize in using the{" "}
 				<a href="https://www.mongodb.com/mern-stack">MERN stack</a>, a
 				JavaScript-based framework for building completely full stack web
-				applications from the database to the browser.
+				applications from database to browser.
 			</p>
 		</div>
 	);

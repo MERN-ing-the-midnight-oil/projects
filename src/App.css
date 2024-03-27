@@ -130,3 +130,35 @@ body, html, #root, .App {
     height: 50vh;
   }
 }
+
+/* Adjustments for Header and About Me for mobile responsiveness */
+@media (max-width: 768px) {
+  /* Stack links vertically in the header on mobile devices */
+  .persistent-header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  /* Adjusting the header links margin for mobile */
+  .header-links a {
+    margin: 5px 0; /* Adjusted margin for vertical stacking */
+  }
+
+  /* Ensure the About Me section doesn't cut off text */
+  .about-me-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .about-me-profile-pic {
+    margin-bottom: 20px; /* Adds space between the image and text in mobile view */
+  }
+}
+
+/* Additional responsiveness for very small devices */
+@media (max-width: 480px) {
+  .about-me-text {
+    font-size: 1.2rem; /* Slightly reduce the font size for very small screens */
+  }
+}
