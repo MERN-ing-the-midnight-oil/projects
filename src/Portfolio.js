@@ -2,9 +2,20 @@ import React from "react";
 import CustomCard from "./CustomCard";
 import shelfElfImage from "./images/ShelfElf.png"; // Adjust the path as necessary for your project structure
 import fullStackImage from "./images/fullstack.jpeg";
+import cruxImage from "./images/crux.png"; // Adjust the path as necessary for
 
 const projects = [
 	// Full MERN Stack projects
+	{
+		title: "Crux",
+		subtitle:
+			"A unique crossword puzzle game with visual clues and elements of `Dixit` and `Mysterium`.",
+		repo: "https://github.com/MERN-ing-the-midnight-oil/crux-2.0",
+		deployedURL: "https://mern-ing-the-midnight-oil.github.io/CRUX-2.0/",
+		image: cruxImage, // Ensure you have an import or a path for 'cruxImage' that corresponds to an actual image file
+		category: "Games for Mobile",
+	},
+
 	{
 		title: "Shelf Elf",
 		subtitle:
@@ -114,8 +125,22 @@ const Portfolio = () => {
 			className="portfolio-container"
 			style={{ paddingTop: "40px", alignContent: "center" }}>
 			<h1 style={{ textAlign: "center" }}>My Projects</h1>
+
+			{/* Games for Mobile section */}
+			<h2 style={{ textAlign: "center" }}>Games for Mobile</h2>
+			<div className="card-container">
+				{projects
+					.filter((project) => project.category === "Games for Mobile")
+					.map((project) => (
+						<CustomCard
+							key={project.id}
+							{...project}
+						/>
+					))}
+			</div>
+
 			{/* Full MERN Stack projects */}
-			<h2 style={{ textAlign: "center" }}>Full MERN Stack Projects</h2>
+			<h2 style={{ textAlign: "center" }}>Full Stack</h2>
 			<div className="card-container">
 				{projects
 					.filter((project) => project.category === "Full MERN Stack projects")
@@ -126,8 +151,9 @@ const Portfolio = () => {
 						/>
 					))}
 			</div>
+
 			{/* Front-end demos */}
-			<h2 style={{ textAlign: "center" }}>Front-end Demos</h2>
+			<h2 style={{ textAlign: "center" }}>Front-end</h2>
 			<div className="card-container">
 				{projects
 					.filter((project) => project.category === "Front-end demos")
@@ -138,6 +164,7 @@ const Portfolio = () => {
 						/>
 					))}
 			</div>
+
 			{/* Collaborations */}
 			<h2 style={{ textAlign: "center" }}>Collaborations</h2>
 			<div className="card-container">
@@ -150,9 +177,9 @@ const Portfolio = () => {
 						/>
 					))}
 			</div>
-			{/* Link to the fullstack.jpg image with a preview */}
+
+			{/* Certification Image */}
 			<div style={{ textAlign: "center", marginTop: "20px" }}>
-				{/* Use any element to trigger the image opening, here we use an img tag itself */}
 				<h1 style={{ textAlign: "center" }}>
 					Full stack web development certification
 				</h1>
